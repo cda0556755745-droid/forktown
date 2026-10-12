@@ -9,6 +9,7 @@ import {
   type Place,
 } from '../src/lib/schema';
 import { hash } from '../src/lib/world';
+import { withoutBom } from '../scripts/place-files';
 
 // The town with every house plot taken: the real neighbors where they live, and a made-up house
 // on every plot that is still free. A made-up house is a pure function of its plot, so the same
@@ -21,14 +22,16 @@ import { hash } from '../src/lib/world';
  * Every house file in places/, parsed and sorted by file name, so the order is the same on every
  * OS, with any made-up houses first. Only check:full-town writes those, so there a test that takes
  * "the first house in places/" as its fixture meets a made-up house instead, which will most
- * likely break it before a newcomer's house can. Tests read places/ only through here (a check in
- * full-town.test.ts makes sure), and tests that need a particular home use tests/fixtures.ts.
+ * likely break it before a newcomer's house can. Tests that need a particular home use
+ * tests/fixtures.ts.
  */
 export function readPlaces(directory = 'places'): Place[] {
   const places = readdirSync(directory)
     .filter((file) => file.endsWith('.json'))
     .sort()
-    .map((file) => placeSchema.parse(JSON.parse(readFileSync(`${directory}/${file}`, 'utf8'))));
+    .map((file) =>
+      placeSchema.parse(JSON.parse(withoutBom(readFileSync(`${directory}/${file}`, 'utf8')))),
+    );
   const madeUp = places.filter((place) => place.creator === FULL_TOWN_CREATOR);
   return [...madeUp, ...places.filter((place) => !madeUp.includes(place))];
 }

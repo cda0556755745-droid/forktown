@@ -9,6 +9,7 @@ import { sharePreview } from './scripts/share-preview.ts';
 import { chunkBudget } from './scripts/chunk-budget.ts';
 import { placeJsonErrors } from './scripts/place-files.ts';
 import { buildManifest, readBuildInfo } from './scripts/build-manifest.ts';
+import { listeningRoom } from './scripts/listening-room.ts';
 
 // This build's identity, computed once: the live page and live/build.json share it.
 const BUILD = readBuildInfo(process.cwd());
@@ -21,6 +22,7 @@ export default defineConfig(({ mode }) => {
       placeJsonErrors(),
       react(),
       localPlacesPlugin(),
+      listeningRoom(),
       thirdPartyLicenses(),
       sharePreview(),
       chunkBudget(),
@@ -39,11 +41,11 @@ export default defineConfig(({ mode }) => {
     server: { port: 5173, strictPort: true },
     preview: { port: 4173, strictPort: true },
     test: {
-      // Many tests sweep a whole town year, and the roster-wide ones grow with the town. With all
-      // 141 house plots taken, the slowest without a timeout of their own take 6–8 s alone on a
-      // busy desktop, and CI's shared runners are no faster, so Vitest's 5 s default would fail
-      // them there. A hung test still stops within 15 s.
-      testTimeout: 15_000,
+      // A few tests read or lay out every house of the 230 house plots, so they slow down as the
+      // town grows, and a busy desktop or CI's shared runners can push them past Vitest's 5 s
+      // default. Tests that start Git or Node set longer timeouts of their own; any other hung
+      // test still stops within 20 s.
+      testTimeout: 20_000,
       // Worktrees under .claude/ and scratch copies under .shots/ carry tests of their own.
       exclude: [...configDefaults.exclude, '.claude/**', '.shots/**'],
     },
