@@ -1,0 +1,41 @@
+{
+  "id": "yasmin-studio",
+  "name": "Yasmin Studio",
+  "creator": "bberkovits329",
+  "plot": "C10",
+  "building": "cafe",
+  "color": "#C97878",
+  "decoration": "bench",
+  "story": "Welcome to our dream studio! Here you will find a bright, open space with cozy vibes, comfortable seating, and beautiful natural light. It is the perfect peaceful spot to relax.",
+  "design": {
+    "wall": "#F0E5C8",
+    "trim": "#575e85",
+    "floors": 1,
+    "roof": "gable",
+    "windows": "cross",
+    "garden": "wildflowers",
+    "feature": "none"
+  },
+  "resident": {
+    "name": "Maren",
+    "figure": "male",
+    "skin": "#D9B68B",
+    "hair": "#675A48",
+    "outfit": "#789B76",
+    "accessory": "none",
+    "greeting": "Hello!",
+    "routine": {
+      "morning": "work",
+      "afternoon": "stroll",
+      "evening": "home",
+      "night": "sleep"
+    }
+  },
+  "sign": {
+    "mode": "text",
+    "text": "HELLO",
+    "color": "#FFF4D4",
+    "background": "#35554A",
+    "html": ""
+  }
+}

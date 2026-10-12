@@ -1,0 +1,41 @@
+{
+  "id": "biga",
+  "name": "BIGA",
+  "creator": "Yael-Zemach",
+  "plot": "B6",
+  "building": "cafe",
+  "color": "#BE8E68",
+  "decoration": "flowers",
+  "story": "Who loves coffee",
+  "design": {
+    "wall": "#F0E5C8",
+    "trim": "#846C56",
+    "floors": 2,
+    "roof": "gable",
+    "windows": "shutters",
+    "garden": "vegetables",
+    "feature": "balcony"
+  },
+  "resident": {
+    "name": "Opal",
+    "figure": "male",
+    "skin": "#D9B68B",
+    "hair": "#675A48",
+    "outfit": "#789B76",
+    "accessory": "none",
+    "greeting": "Hello!",
+    "routine": {
+      "morning": "work",
+      "afternoon": "stroll",
+      "evening": "home",
+      "night": "sleep"
+    }
+  },
+  "sign": {
+    "mode": "text",
+    "text": "HELLO",
+    "color": "#FFF4D4",
+    "background": "#35554A",
+    "html": ""
+  }
+}
